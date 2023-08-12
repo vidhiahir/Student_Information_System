@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/table.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>View Degrees</title>
+</head>
+
+<body>
+    <%- include('adminNavbar') %>
+        <div class="header">
+            <h2>Degree Details</h2>
+        </div>
+        <section class="home-section">
+            <div class="table-container">
+                <form action="/viewDegree" method="post">
+                    <ul class="table-responsive-lg">
+                        <li class="thead-dark">
+                            <div class="col col-1">SR No</div>
+                            <div class="col col-2">Name</div>
+                            <div class="col col-5">Edit</div>
+                            <div class="col col-6">Delete</div>
+                        </li>
+
+                        <% for (var i=0; i <degree.length; i++) { %>
+
+                            <li class="table-row">
+                                <div class="col col-1" data-label="#">
+                                    <%= i+1 %>
+                                </div>
+                                <div class="col col-2" data-label="Student ID">
+                                    <%= degree[i].name %>
+                                </div>
+                                <div class="col col-5 input-field" data-label="Name">
+                                    <button class="mybtn" type='submit' name="edit" value="<%= degree[i].id %>"><i
+                                            class='fa-solid fa-edit'></i></button>
+                                </div>
+                                <div class="col col-6 input-field" data-label="Batch">
+                                    <button type='submit' class="mybtn" name="delete" value="<%= degree[i].id %>"
+                                        class="delete-btn"><i class='fa-solid fa-trash'></i></button>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+                </form>
+                <div class="button-container">
+                    <button class="hover-button" onclick="window.location.href = '/addDegree'">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="tooltip">Add Semester</div>
+                  </div>
+
+            </div>
+        </section>
+
+
+        <script src="https://kit.fontawesome.com/2bdd553bc7.js" crossorigin="anonymous"></script>
+        <script>
+            let btns = document.getElementsByClassName('delete-btn');
+
+            for (i of btns) {
+                i.addEventListener('click', function () {
+                    if (!confirm("Are you sure you want to delete?")) {
+                        event.preventDefault();
+                    }
+                });
+            }
+        </script>
+</body>
+
+</html>

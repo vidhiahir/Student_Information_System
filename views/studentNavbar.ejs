@@ -1,0 +1,143 @@
+<!-- Vertical navbar section  -->
+<section class="nav-bar">
+    <div class="menu-toggle">
+        <div class="hamburger">
+            <span></span>
+        </div>
+    </div>
+    <div class="sidebar close">
+        <div class="logo-details">
+            <span class="logo_name"><img src="img/Logo1.png" width="150px" alt=""></span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="/studentHome">
+                    <i class='bx bxs-home'></i>
+                    <span class="link_name">Home</span>
+                </a>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bxs-user-detail'></i>
+                        <span class="link_name">Student Details</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="/viewStudent" class="sub-list">View details</a></li>
+                    <li><a href="/updateStudent" class="sub-list">Update details</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/semesterFee" class="attedance-logo">
+                    <i class='bx bx-money-withdraw'></i>
+                    <span class="link_name">Fees</span>
+                </a>
+                <!-- <ul class="sub-menu blank">
+               <li><a class="link_name" href="#">Complain-box</a></li>
+            </ul> -->
+            </li>
+            <li>
+                <a href="/semesterRegistration">
+                    <i class='bx bx-folder-plus'></i>
+                    <span class="link_name">Semester Registration</span>
+                </a>
+                <a href="/addDropStudent">
+                    <i class='bx bxs-file-plus'></i>
+                    <span class="link_name">Add-Drop course</span>
+                </a>
+                <a href="/semesterResults">
+                    <i class='bx bxs-report'></i>
+                    <span class="link_name">Result</span>
+                </a>
+                <a href="/semesterResultsAttendance">
+                    <i class='bx bxs-user-check bx-sm'></i>
+                    <span class="link_name">Attendance</span>
+                </a>
+            </li>
+            <li>
+                <a href="/myComplains">
+                    <i class='bx bx-comment-error'></i>
+                    <span class="link_name">Complain-box</span>
+                </a>
+            </li>
+            <li>
+                <a href="/passwordStudent">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Change Password</span>
+                </a>
+            </li>
+
+            <li>
+                <div class="profile-details">
+                    <a href="/viewStudent">
+                    <div class="profile-content">
+                        <% if (typeof(student.profilePicture)==='undefined' ) { %>
+                            <img src="img/dp.PNG" alt="">
+                            <% } else { %>
+                                <img src="data:<%= student.profilePicture.contentType %>;base64,<%= student.profilePicture.toString('base64') %>"
+                                    alt="Profile Picture">
+                                <% } %>
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">
+                            <%= student.firstname %>
+                                <%= student.lastname %>
+                        </div>
+                        <div class="job">
+                            <%= student.studentID %>
+                        </div>
+                    </div>
+                </a>
+                    <form action="/logoutStudent?_method=DELETE" method="POST">
+                        <button type="submit" class="logout" onclick="event.preventDefault(); showConfirmation();"><i class='bx bx-log-out'></i></button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Javascript section -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    const menu_toggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    menu_toggle.addEventListener('click', () => {
+        menu_toggle.classList.toggle('is-active');
+        sidebar.classList.toggle('is-active');
+    });
+
+    function showConfirmation() {
+        Swal.fire({
+            title: 'Sign out?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form
+                document.querySelector('form').submit();
+            }
+        })
+    }
+</script>

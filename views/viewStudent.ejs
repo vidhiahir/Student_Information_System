@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Student dashboard</title>
+</head>
+
+<body>
+    <%- include('studentNavbar') %>
+        <!-- main body section -->
+        <div class="student-container">
+            <div class="st-left">
+                <div class="left-head">
+                    <div class="profile">
+                    <% if (typeof(student.profilePicture)==='undefined') { %>
+                        <img class="profile-image" src="img/dp.PNG" alt="">
+                    <% } else { %>
+                        <img class="profile-image" src="data:<%= student.profilePicture.contentType %>;base64,<%= student.profilePicture.toString('base64') %>" alt="Profile Picture">
+                    <% } %>  
+                    </div> 
+                    <div class="name">           
+                    <strong><%= student.firstname + " " + student.middlename + " " + student.lastname%></strong>
+                    </div>
+
+                </div>
+                <div class="left-body">
+                    <p class="field"><strong>Student Id:</strong> <%= student.studentID %></p>
+                    <p class="field"><strong>Batch:</strong> <%= student.batch %></p>
+                    <p class="field"><strong>Program:</strong> <%= student.programRegistered.degreeOffered.name + " " + student.programRegistered.branchOffered.name%></p>
+                    <p class="field"><strong>Semester:</strong> <%= x %></p>
+                </div>
+            </div>
+            <div class="st-right">
+                <p class="field1"><strong>General Information</strong></p>
+                <table class="profile-table">
+                    
+                    <tr>
+                        <% var options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' }; %>
+                        <th><strong>Birth Date</strong></th>
+                        <td><%= student.dob.toLocaleDateString("en-US", options) %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Gender</strong></th>
+                        <td><%= student.gender %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Weight</strong></th>
+                        <td><%= student.weight %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Height</strong></th>
+                        <td> <%= student.height %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Bloodgroup</strong></th>
+                        <td> <%= student.bloodGroup %> </td>
+                    </tr>
+                </table>
+                <p class="field1"><strong>Contact Information</strong></p>
+                <table class="profile-table">
+                    <tr>
+                        <th><strong>Contact No.</strong></th>
+                        <td> <%= student.mobileNO %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Personal Email</strong></th>
+                        <td> <%= student.myemail %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Parent Email</strong></th>
+                        <td><%= student.parentEmail %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Address</strong></th>
+                        <td><%= student.address %></td>
+                    </tr>
+                    </table>
+            </div>
+        </div>
+        <div class="lower">
+
+        </div>
+</body>
+
+</html>

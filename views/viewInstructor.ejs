@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Instructor dashboard</title>
+</head>
+
+<body>
+    <%- include('instructorNavbar') %>
+        <!-- main body section -->
+        <div class="student-container">
+            <div class="st-left">
+                <div class="left-head">
+                    <div class="profile">
+                        <% if (typeof(instructor.profilePicture)==='undefined') { %>
+                            <img class="profile-image" src="img/dp.PNG" alt="">
+                        <% } else { %>
+                            <img class="profile-image" src="data:<%= instructor.profilePicture.contentType %>;base64,<%= instructor.profilePicture.toString('base64') %>" alt="Profile Picture">
+                        <% } %> 
+                    </div> 
+                    <div class="name">           
+                    <strong><%= instructor.fullname %></strong>
+                    </div>
+
+                </div>
+                <div class="left-body">
+                    <p class="field"><strong>College Email:</strong> <%= instructor.email %></p>
+                    <p class="field"><strong>Date of joining:</strong>
+                        <%= instructor.joiningDate.toLocaleDateString("en-US", options) %>
+                </div>
+            </div>
+            <div class="st-right">
+                <p class="field1"><strong>General Information</strong></p>
+                <table class="profile-table">
+                    
+                    <tr>
+                        <% var options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric' }; %>
+                        <th><strong>Birth Date</strong></th>
+                        <td> <%= instructor.dob.toLocaleDateString("en-US", options) %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Gender</strong></th>
+                        <td><%= instructor.gender %></td>
+                    </tr>
+                </table>
+                <p class="field1"><strong>Contact Information</strong></p>
+                <table class="profile-table">
+                    <tr>
+                        <th><strong>Contact No.</strong></th>
+                        <td> <%= instructor.mobileNO %></td>
+                    </tr>
+                    <tr>
+                        <th><strong>Personal Email</strong></th>
+                        <td> <%= instructor.myemail %></td>
+                    </tr>
+                    </table>
+            </div>
+        </div>
+</body>
+
+</html>

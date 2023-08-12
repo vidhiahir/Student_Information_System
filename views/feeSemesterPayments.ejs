@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/table.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Fee Payments</title>
+</head>
+
+<body>
+    <%- include('adminNavbar') %>
+        <div class="header">
+            <h2>Fee Payments</h2>
+        </div>
+        <div class="sub-header">
+            <h4>Select Semester</h4>
+        </div>
+        <section class="home-section">
+            <div class="table-container">
+                <form action="/feeSemesterPayments" method="post">
+                    <ul class="table-responsive-lg">
+                        <li class="thead-dark">
+                            <div class="col col-1">SR No</div>
+                            <div class="col col-2">Name</div>
+                            <div class="col col-3">Date created</div>
+                            <div class="col col-5">View</div>
+                        </li>
+
+                        <% for (var i=0; i <semester.length; i++) { %>
+
+                            <li class="table-row">
+                                <div class="col col-1" data-label="#">
+                                    <%= i+1 %>
+                                </div>
+                                <div class="col col-2" data-label="Student ID">
+                                    <%= semester[i].name %>
+                                </div>
+                                <div class="col col-3" data-label="Student ID">
+                                    <% var options={ weekday: 'long' , year: 'numeric' , month: 'long' , day: 'numeric'
+                                        }; %>
+                                                <%= semester[i].dateCreated.toLocaleDateString("en-US", options) %>
+                                </div>
+                                <div class="col col-5" data-label="Name">
+                                    <button class="view-btn" type='submit' name="view" value="<%= semester[i].id %>">Select</button>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+                </form>
+            </div>
+
+        </section>
+</body>
+
+</html>

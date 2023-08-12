@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/form.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Welcome Student</title>
+</head>
+
+<body>
+    <form action="/logoutStudent?_method=DELETE" method="POST">
+        <button type="submit" class="lgbtn" onclick="event.preventDefault(); showConfirmation();">Logout</button>
+    </form>
+    <section class="form1-body">
+
+        <!-- <button class="lgbtn">
+            Logout
+            <i class="bx bx-log-out">
+        </button> -->
+        <div class="student-container">
+            <div class="row align-items-stretch no-gutters contact-wrap">
+                <div class="col-md-12">
+                    <div class="form h-100">
+                        <h3> Student Registration Form</h3>
+                        <form action="/studentDetails" class="mb-5" method="post" id="contactForm" name="contactForm"
+                            enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-4 form-group mb-3">
+                                    <label for="" class="col-form-label">First Name *</label>
+                                    <input type="text" class="form-control" name="firstname" id="name"
+                                        placeholder="First Name" required>
+                                </div>
+                                <div class="col-md-4 form-group mb-3">
+                                    <label for="" class="col-form-label">Middle Name</label>
+                                    <input type="text" class="form-control" name="middlename" id="email"
+                                        placeholder="Middle Name">
+                                </div>
+                                <div class="col-md-4 form-group mb-3">
+                                    <label for="" class="col-form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" id="email"
+                                        placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="studentId" class="col-form-label">Student Id *</label>
+                                    <input class="form-control" type="text" placeholder="Student ID"
+                                        value="<%= student.studentID %>" name="studentID" required disabled>
+                                </div>
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="batch" class="col-form-label">Batch *</label>
+                                    <input class="form-control" type="text" placeholder="Batch"
+                                        value="<%= student.batch %>" name="batch" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="program" class="col-form-label">Program</label>
+                                    <select class="form-control custom-select" id="myProgram" name="myProgram">
+                                        <option value="Select" selected disabled required>Select</option>
+                                        <% for (var k=0; k <program.length; k++) { %>
+
+                                            <% var x=program[k].degreeOffered.name ; %>
+                                                <% var y=program[k].branchOffered.name ; %>
+
+                                                    <option value="<%= program[k].id %>">
+                                                        <%= x + " " + y %>
+                                                    </option>
+                                                    <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <h4>Physical Details</h4>
+                            <div class="row">
+                                <div class="col-lg-4 form-group mb-3">
+                                    <label for="bloodGroup" class="col-form-label">Blood Group*</label>
+                                    <select class="form-control custom-select" id="bloodGroup" name="bloodGroup"
+                                        required>
+                                        <option class="b3" selected disabled hidden>
+                                            Select
+                                        </option>
+                                        <option value="A Positive">A Positive</option>
+                                        <option value="A Negative">A Negative</option>
+                                        <option value="B Positive">B Positive</option>
+                                        <option value="B Negative">B Negative</option>
+                                        <option value="AB Positive">AB Positive</option>
+                                        <option value="AB Negative">AB Negative</option>
+                                        <option value="O Positive">O Positive</option>
+                                        <option value="O Negative">O Negative</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 form-group mb-3">
+                                    <label for="pemail" class="col-form-label">Height *</label>
+                                    <input class="form-control" type="number" placeholder="Height in centimeters"
+                                        name="height" value="<%= student.height %>" required />
+                                </div>
+                                <div class="col-lg-4 form-group mb-3">
+                                    <label for="ppemail" class="col-form-label">Weight *</label>
+                                    <input class="form-control" type="number" placeholder="Weight in kilograms"
+                                        name="weight" value="<%= student.weight %>" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group mb-3 ">
+                                    <label for="gender" class="col-form-label">Gender *</label>
+                                    <div class="form control unique">
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" style="margin-top: 8px;" type="radio"
+                                                name="gender" id="male" value="Male">
+                                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" style="margin-top: 8px;" type="radio"
+                                                name="gender" id="female" value="Female">
+                                            <label class="form-check-label">Female</label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="form-check-input" style="margin-top: 8px;" type="radio"
+                                                name="gender" id="other" value="Other">
+                                            <label class="form-check-label">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 date">
+                                    <label for="dob" class="col-form-label">Date of Birth *</label>
+                                    <input class="form-control input-dob" type="date" id="dob" name="dob" required>
+                                </div>
+                            </div>
+                            <br>
+                            <h4>
+                                <bold>Contact Details</bold>
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="mobileno" class="col-form-label">Mobile No. *</label>
+                                    <input type="text" class="form-control" name="mobileNO" id="mobileNO"
+                                        placeholder="000-000-0000" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="cmail" class="col-form-label">College E-mail *</label>
+                                    <input type="email" class="form-control" name="c-mail" id="c-mail"
+                                        placeholder="College E-mail" value="<%= student.email %>" disabled>
+                                </div>
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="pmail" class="col-form-label">Personal E-mail</label>
+                                    <input type="email" class="form-control" name="myemail" id="myemail"
+                                        placeholder="Personal E-mail">
+                                </div>
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="ppmail" class="col-form-label">Parent E-mail *</label>
+                                    <input type="email" class="form-control" name="parentEmail" id="parentEmail"
+                                        placeholder="Parent E-mail" required>
+                                </div>
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="address" class="col-form-label">Address *</label>
+                                    <input class="form-control" type="text" name="address"
+                                        placeholder="Residential address" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="New-Password" class="col-form-label">New Password *</label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Enter Password" required>
+                                        <div id="pssd"></div>
+                                </div>
+                                <div class="col-md-6 form-group mb-3">
+                                    <label for="Confirm-Password" class="col-form-label">Confirm Password *</label>
+                                    <input type="password" class="form-control" name="repassword" id="repassword"
+                                        placeholder="Enter password" required>
+                                        <div id="repssd"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 form-group mb-3">
+                                    <label for="picture" class="col-form-label">Select Picture </label>
+                                    <input type="file" class="form-control" name="picture" id="picture">
+                                </div>
+                            </div>
+
+                            <div class="input-field">
+                                <input type="submit" class="submit" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showConfirmation() {
+            Swal.fire({
+                title: 'Sign out?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form
+                    document.querySelector('form').submit();
+                }
+            })
+        }
+
+        const passwordInput = document.getElementById('password');
+
+        passwordInput.addEventListener('keyup', () => {
+            const password = passwordInput.value;
+
+            if (isValidPassword(password)) {
+                document.getElementById('pssd').innerHTML = "<p style='color:green;' >Valid<p>";
+            }
+            else{
+                document.getElementById('pssd').innerHTML = "<p style='color:red;' >Invalid<p>";
+            }
+        });
+
+        function isValidPassword (password) {
+            // for checking if password length is between 8 and 15
+            if (!(password.length >= 8 && password.length <= 15)) {
+                return false;
+            }
+
+            // to check space
+            if (password.indexOf(" ") !== -1) {
+                return false;
+            }
+
+            // for digits from 0 to 9
+            let count = 0;
+            for (let i = 0; i <= 9; i++) {
+                if (password.indexOf(i) !== -1) {
+                    count = 1;
+                }
+            }
+            if (count === 0) {
+                return false;
+            }
+
+            // for special characters
+            if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                return false;
+            }
+
+            // for capital letters
+            count = 0;
+            for (let i = 65; i <= 90; i++) {
+                if (password.indexOf(String.fromCharCode(i)) !== -1) {
+                    count = 1;
+                }
+            }
+            if (count === 0) {
+                return false;
+            }
+
+            // for small letters
+            count = 0;
+            for (let i = 97; i <= 122; i++) {
+                if (password.indexOf(String.fromCharCode(i)) !== -1) {
+                    count = 1;
+                }
+            }
+            if (count === 0) {
+                return false;
+            }
+
+            // if all conditions fail
+            return true;
+        }
+
+        const passwordConfirm = document.getElementById('repassword');
+
+        passwordConfirm.addEventListener('keyup', () => {
+            const password = passwordInput.value;
+            const repassword = passwordConfirm.value;
+
+            if (password === repassword) {
+                document.getElementById('repssd').innerHTML = "<p style='color:green;' >Password matching<p>";
+            }
+            else{
+                document.getElementById('repssd').innerHTML = "<p style='color:red;' >Password does not match<p>";
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

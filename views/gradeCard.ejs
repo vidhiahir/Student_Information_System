@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/table.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Grade Card</title>
+</head>
+
+<body>
+    <%- include('studentNavbar') %>
+    <div class="header">
+        <% if (signal=="1") { %>
+            <h2>Grade Card</h2>
+        <% } else { %>
+            <h2>Attendance</h2>
+            <% } %>
+    </div>
+   
+    <section class="home-section">
+        <div class="table-container">
+            <form action="/gradeCard" method="post">
+                <ul class="table-responsive-lg">
+                    <div class="data-container">
+                        <table class="data-table">
+                            
+                            <tr>
+                                <th><strong>Semester</strong></th>
+                                <td><%= tuple[1] %></td>
+                            </tr>
+                            <tr>
+                                <th><strong>Name</strong></th>
+                                <td><%= result[0].studentEnrolled.firstname %>
+                                    <%= result[0].studentEnrolled.middlename %>
+                                        <%= result[0].studentEnrolled.lastname %></td>
+                            </tr>
+                            <tr>
+                                <th><strong>Student ID</strong></th>
+                                <td><%= result[0].studentEnrolled.studentID %></td>
+                            </tr>
+                            <tr>
+                                <% var spi=0,cnt=0,tot_cred=0 %>
+                                   <% for (var i=0; i <result.length; i++) { %>
+                                    <% if (signal=="1" && result[i].grade) { %>
+                                            <% spi +=result[i].grade*result[i].courseEnrolled.credits %>
+                                            <% tot_cred +=result[i].courseEnrolled.credits %>
+                                                <% cnt++ %>
+                                    <% } %>
+                                <% } %>
+                                
+                                <th><strong>SPI </strong></th>
+                                <% if (cnt==6 && signal=="1") { %>
+                                    <% spi /=tot_cred %>
+                                        <% spi=Math.round(spi * 100) / 100 %>
+                                            <td><%= spi %></td>
+                                            <% } else if (signal=="1") { %>
+                                                <td style="color:red;">Not Declared</td>
+                                            <% } %>
+                            </tr>
+                           
+                        </table>
+                    </div>
+                    <li class="thead-dark">
+                        <div class="col col-1">SR No</div>
+                        <div class="col col-2">Course Code</div>
+                        <div class="col col-3">Course Name</div>
+                        <div class="col col-4">Course Credits</div>
+                            <% if (signal=="1") { %>
+                                <div class="col col-5">Grade</div>
+                            <% } else { %>
+                                <div class="col col-5">Attendance percentage</div>
+                                <% } %>
+                    </li>
+
+                    <% var count=0 %>
+                        <% for (var i=0; i <result.length; i++) { %>
+
+                        <li class="table-row">
+                            <div class="col col-1" data-label="#">
+                                <%= i+1 %>
+                            </div>
+                            <div class="col col-2" data-label="Student ID">
+                                <%= result[i].courseEnrolled.code %>
+                            </div>
+                            <div class="col col-3" data-label="Name">
+                                <%= result[i].courseEnrolled.name %>
+                            </div>
+                            <div class="col col-4" data-label="Batch">
+                                <%= result[i].courseEnrolled.credits %>
+                            </div>
+                            <% if (signal=="1") { %>
+                                <div class="col col-5" data-label="Branch">
+                                    <% if (result[i].grade) { %>
+                                        <%= result[i].grade %>
+                                                <% count++ %>
+                                                    <% } else { %>
+                                                        -
+                                                        <% } %>
+                                </div>
+                            <% } else { %>
+                                <div class="col col-5" data-label="Branch">
+                                    <% if (result[i].attendance) { %>
+                                        <%= result[i].attendance %>
+                                    <% } else { %>
+                                        -
+                                        <% } %>
+                                </div>
+                            <% } %>
+                            
+                        </li>
+                        <% } %>
+
+                       
+                </ul>
+                <% if (count==6 && signal=="1") { %>
+                    <div class="input-field">
+                            <button class="submit" type="submit" name="result"
+                                value="<%= result[0].semesterEnrolled.id + " " + result[0].studentEnrolled.id + " " + tuple[1]%>">Download</button>
+                            </div>
+                            <% } else if (signal=="1") { %>
+                                <div class="input-field">
+                                <button disabled class="submit" disabled type="submit" name="result"
+                                    value="<%= result[0].semesterEnrolled.id + " " + result[0].studentEnrolled.id + " " + tuple[1]%>">Download</button>
+                                </div>
+                                <% } %>
+            </form>
+
+        </div>
+    </section>
+
+
+</body>

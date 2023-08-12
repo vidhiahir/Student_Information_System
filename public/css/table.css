@@ -1,0 +1,78 @@
+.table-container {
+    width: 1200px !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  
+  .table-responsive-lg li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  }
+  .table-responsive-lg .thead-dark {
+    background-color: #242728;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .table-responsive-lg .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-responsive-lg .table-row:hover {
+    background-color: #eae9e9;
+    cursor: pointer;
+  }
+  .table-responsive-lg .col-1 {
+    flex-basis: 10%;
+  }
+  .table-responsive-lg .col-2 {
+    flex-basis: 20%;
+  }
+  .table-responsive-lg .col-3 {
+    flex-basis: 20%;
+  }
+  .table-responsive-lg .col-4 {
+    flex-basis: 20%;
+  }
+  .table-responsive-lg .col-5 {
+    flex-basis: 15%;
+  }
+  .table-responsive-lg .col-6 {
+    flex-basis: 15%;
+  }
+  .img-thumbnail {
+    border-radius: 50%;
+    height: 30px;
+  }
+  
+  @media (max-width: 767px) {
+    .table-responsive-lg .thead-dark {
+      display: none;
+    }
+  
+    .table-responsive-lg li {
+      display: block;
+    }
+    .table-responsive-lg .col {
+      flex-basis: 100%;
+    }
+    .table-responsive-lg .col {
+      display: flex;
+      padding: 10px 0;
+    }
+    .table-responsive-lg .col:before {
+      color: #6c7a89;
+      padding-right: 10px;
+      content: attr(data-label);
+      flex-basis: 50%;
+      text-align: right;
+    }
+  }

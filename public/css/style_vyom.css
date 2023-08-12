@@ -1,0 +1,78 @@
+
+body {
+    background: #ececec;
+  }
+  
+  .option {
+    overflow-y: visible;
+    height: 10vh;
+    padding-top: 5%;
+    align-items: center;
+    padding-bottom: 0;
+    background-size: cover;
+  }
+  
+  .option .container-box {
+    display: flex;
+    padding: 10%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .option .container-box .box {
+    justify-content: space-between;
+    padding: 3rem;
+    width: 13rem;
+    background-color: white;
+    text-align: center;
+    border: var(--border);
+    border-radius: 50px;
+    box-shadow: #242728 0px 5px 10px;
+  }
+  .option .container-box a {
+    color: #242728;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .option .container-box .box .logbox {
+    width: 4cm;
+  }
+  
+  .option .container-box .box:hover {
+    transform: scale(1.1) perspective(1px);
+    transition: 0.5s;
+  }
+  
+  @media (max-width: 912px) {
+    .option .container-box {
+      display: grid;
+      justify-content: space-evenly;
+    }
+  
+    .option .container-box .box {
+      margin-top: 4%;
+      margin-bottom: 4%;
+      padding: 3rem;
+      width: 30rem;
+    }
+    .option .container-box .box .logbox {
+      width: 10rem;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .option .container-box {
+      display: grid;
+      justify-content: space-evenly;
+    }
+  
+    .option .container-box .box {
+      margin-top: 15%;
+      margin-bottom: 5%;
+      padding: 2rem;
+      width: 14rem;
+    }
+    .option .container-box .box .logbox {
+      width: 7rem;
+    }
+  }

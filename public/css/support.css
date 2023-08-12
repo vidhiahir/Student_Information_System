@@ -1,0 +1,140 @@
+@import url(http://fonts.googleapis.com/css?family=Allura);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+
+    font-family: 'Spartan', sans-serif;
+}
+[class*="entypo-"]:before {
+  font-family: "entypo", sans-serif;
+}
+body{
+  background-color: #ececec;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+  padding-top: 250px;
+
+}
+.ind{
+    font-size: 18px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.text{
+    position: relative;
+    text-align: center;
+    margin: 70px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-weight:500;
+    line-height: 30px;
+}
+.text span{
+    font-size:24px ; 
+    font-weight:600 ; 
+    color:grey;
+}
+.text1 span{
+    font-size:24px ; 
+    font-weight:600 ; 
+    color:grey;
+}
+.text1{
+    text-align: center;
+    margin-top: -100px !important;
+    font-weight:500;
+
+}
+.ribbon {
+  float: left;
+  appearance: none;
+  border-radius: 20px 20px 0px 0px;
+  transition: all (0.2s ease);
+  cursor: pointer;
+  border: none;
+  background: blue;
+  width: 250px;
+  height: 150px;
+  color: rgb(114, 114, 114);
+  margin: 10px auto;
+  -webkit-filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+  -moz-filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+  -ms-filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+  -o-filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.5));
+}
+.ribbon span {
+  margin-top: 5%;
+  line-height: 20px;
+  font-size: 7em;
+}
+
+.ribbon::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 50px solid white;
+  border-right: 100px solid transparent;
+}
+.ribbon::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 50px solid white;
+  border-left: 100px solid transparent;
+}
+.ribbon:hover{
+    transform: scale(1.01);
+    color: rgb(85, 85, 85);
+}
+.mail {
+  background: #fff;
+  color: darken(rgb(255, 255, 255), 20%);
+}
+
+.mail::after {
+  border-top-color: #fff;
+}
+.mail::before {
+  border-top-color: #fff;
+}
+.location {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  background: #fff;
+  color: darken(rgb(255, 255, 255), 20%);
+}
+
+.location::after {
+  border-top-color: #fff;
+}
+.location::before {
+  border-top-color: #fff;
+}
+.phone {
+    align-items: center;
+  background: #fff;
+  color: darken(rgb(255, 255, 255), 20%);
+}
+.phone::after {
+  border-top-color: #fff;
+}
+.phone::before {
+  border-top-color: #fff;
+}
+
+

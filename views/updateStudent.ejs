@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
+    <title>Student dashboard</title>
+  </head>
+  <body>
+    <%- include('studentNavbar') %>
+    <!-- main body section -->
+    <section class="form-body">
+      <div class="form-container">
+        <div class="row align-items-stretch no-gutters contact-wrap">
+          <div class="col-md-12">
+            <div class="form h-100">
+              <h3>Update Student Details</h3>
+
+              <form
+                action="/updateStudent"
+                method="post"
+                class="mb-5"
+                id="contactForm"
+                name="contactForm"
+              >
+                <div class="row">
+                  <div class="col-lg-4 form-group mb-3">
+                    <label for="firstname" class="col-form-label"
+                      >First Name *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First Name"
+                      value="<%= student.firstname %>"
+                      name="firstname"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-4 form-group mb-3">
+                    <label for="middlename" class="col-form-label"
+                      >Middle Name *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Middle Name"
+                      value="<%= student.middlename %>"
+                      name="middlename"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-4 form-group mb-3">
+                    <label for="lastname" class="col-form-label"
+                      >Last Name *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last Name"
+                      value="<%= student.lastname %>"
+                      name="lastname"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                  class="radio-checkbox-container col-lg-6 form-group mb-3"
+                >
+                  <label for="gender" class="col-form-label">Gender *</label>
+                  <div class="form control unique">
+                    <div class="form-check-inline">
+                      <% if (student.gender=="Male") { %>
+                      <input
+                        style="accent-color: #434242 !important"
+                        class="form-check-input"
+                        style="margin-top: 3px"
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        value="Male"
+                        checked
+                      />
+                      <% } else { %>
+                        <input
+                        style="accent-color: #434242 !important"
+                        class="form-check-input"
+                        style="margin-top: 3px"
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        value="Male"
+                      />
+                        <% } %>
+
+                      <label
+                        style="accent-color: #434242"
+                        class="form-check-label"
+                        for="inlineRadio1"
+                        >Male</label
+                      >
+                    </div>
+                    <div class="form-check-inline">
+                      <% if (student.gender=="Female") { %>
+                      <input
+                        style="accent-color: #434242"
+                        class="form-check-input"
+                        style="margin-top: 3px"
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        value="Female"
+                        checked
+                      />
+                      <% } else { %>
+                        <input
+                          style="accent-color: #434242"
+                          class="form-check-input"
+                          style="margin-top: 3px"
+                          type="radio"
+                          name="gender"
+                          id="female"
+                          value="Female"
+                        />
+                        <% } %>
+                      <label class="form-check-label">Female</label>
+                    </div>
+                    <div class="form-check-inline">
+                      <% if (student.gender=="Other") { %>
+                      <input
+                        class="form-check-input"
+                        style="margin-top: 3px"
+                        type="radio"
+                        name="gender"
+                        id="other"
+                        value="Other"
+                        checked
+                      />
+                      <% } else { %>
+                        <input
+                          class="form-check-input"
+                          style="margin-top: 3px"
+                          type="radio"
+                          name="gender"
+                          id="other"
+                          value="Other"
+                        />
+                        <% } %>
+                      <label class="form-check-label">Other</label>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="dob" class="col-form-label"
+                      >Date of Birth *</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      placeholder="Date of Birth"
+                      value="<%= student.dob %>"
+                      name="dob"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="bloodGroup" class="col-form-label"
+                      >Blood Group*</label
+                    >
+                    <select
+                      class="form-control custom-select"
+                      id="bloodGroup"
+                      name="bloodGroup"
+                    >
+                      <option class="b3" selected disabled hidden>
+                        Select
+                      </option>
+                      <option value="A Positive">A Positive</option>
+                      <option value="A Negative">A Negative</option>
+                      <option value="B Positive">B Positive</option>
+                      <option value="B Negative">B Negative</option>
+                      <option value="AB Positive">AB Positive</option>
+                      <option value="AB Negative">AB Negative</option>
+                      <option value="O Positive">O Positive</option>
+                      <option value="O Negative">O Negative</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="pemail" class="col-form-label">Height *</label>
+                    <input
+                      class="form-control"
+                      type="number"
+                      placeholder="Height in centimeters"
+                      name="height"
+                      value="<%= student.height %>"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="ppemail" class="col-form-label">Weight *</label>
+                    <input
+                      class="form-control"
+                      type="number"
+                      placeholder="Weight in kilograms"
+                      name="weight"
+                      value="<%= student.weight %>"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 form-group mb-3">
+                  <label for="dob" class="col-form-label">Mobile No. *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Mobile number"
+                    name="mobileNO"
+                    value="<%= student.mobileNO %>"
+                    required
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="pemail" class="col-form-label"
+                      >Personal Email *</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Personal email ID"
+                      name="myemail"
+                      value="<%= student.myemail%>"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-6 form-group mb-3">
+                    <label for="ppemail" class="col-form-label"
+                      >Parents Email *</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Parent email ID"
+                      name="parentEmail"
+                      value="<%= student.parentEmail%>"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 form-group mb-3">
+                  <label for="dob" class="col-form-label">Address *</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="address"
+                    name="address"
+                    value="<%= student.address %>"
+                    required
+                  />
+                </div>
+                <div class="input-field">
+                  <button class="submit" type="submit">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      radiobutton=document.getElementById("{{student.gender}}");
+      radiobutton.checked=true;
+  </script>
+  </body>
+</html>
